@@ -1,0 +1,45 @@
+.chart {
+  display: block;
+  margin: auto;
+  margin-top: 2rem;
+  font-size: 12px;
+}
+
+rect {
+  stroke: #eee;
+  fill: #aaa;
+  fill-opacity: .8;
+}
+
+rect.parent {
+  cursor: pointer;
+  fill: steelblue;
+}
+
+text {
+  pointer-events: none;
+}
+
+h1 {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.hint {
+  text-align: center;
+  font-style: italic;
+}
+
+.label-title {
+  /*font-weight: bold;*/
+}
+
+.label-value {
+  font-size: 11px;
+}
+
+footer {
+  /*margin-top: 2rem;*/
+  float: right;
+  font-style: italic;
+}

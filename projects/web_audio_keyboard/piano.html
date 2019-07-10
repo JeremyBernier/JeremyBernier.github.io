@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Piano</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!--<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+</head>
+<body>
+	<div class="widget">
+		<svg id="keyboard" width="700" height="80"></svg>
+	</div>
+<script>
+	// var NOTES = ['C','D','E','F','G','A','B','C'];
+	var notesPlaying = {};
+	var oscillator,
+		context,
+		gainNode,
+		filter,
+		oscType = 'sine';
+	var NUM_OCTAVES = 5;
+	var keyToNote = {};
+	var mouseDown = false;
+	var notePlayingFromMouse;
+	var NOTE_FREQ = [];
+
+	function initKeyMap() {
+		var keyCodeOrder = [90,83,88,68,67,86,71,66,72,78,74,77,188,76,190,186,191,81,50,
+			87,51,69,52,82,84,54,89,55,85,73,57,79,48,80,189,219,221];
+		for(var i=0; i<3*12+1; i++) {
+			keyToNote[keyCodeOrder[i]] = i+12;
+		}
+		//Frequency = f_0 * a^n
+		var A_CONST = Math.pow(2,1/12);
+		for (var i=0; i < NUM_OCTAVES*12; i++) {
+			NOTE_FREQ.push(440*Math.pow(A_CONST, i+3-36));
+		}
+	}
+
+	function addKeyboardEventListeners() {
+		document.getElementById('keyboard').addEventListener('mousedown', function(e) {
+			if(e.which === 1) {		//left click
+				mouseDown = true;
+				notePlayingFromMouse = e.target.id;
+				noteOn(notePlayingFromMouse);
+			}
+		});
+		document.getElementById('keyboard').addEventListener('mousemove', function(e) {
+			if(e.which === 1) {		//left click
+				if (mouseDown && e.target.id !== notePlayingFromMouse) {
+					noteOff(notePlayingFromMouse);
+					notePlayingFromMouse = e.target.id;
+					noteOn(e.target.id);
+				}
+			}
+		});
+		//global so that the note always releases
+		document.addEventListener('mouseup', function(e) {
+			mouseDown = false;
+			if(notePlayingFromMouse) {
+				noteOff(notePlayingFromMouse);
+			}
+			notePlayingFromMouse = false;
+		});
+		window.onkeydown = function(e) {
+			var code = e.keyCode ? e.keyCode : e.which;
+			if(code in keyToNote) {
+				noteOn(keyToNote[code]);
+			}
+
+		}
+		window.onkeyup = function(e) {
+			var code = e.keyCode ? e.keyCode : e.which;
+			if(code in keyToNote) {
+				noteOff(keyToNote[code]);
+			}
+		}
+	}
+	function initWebAudio() {
+		try {
+			window.AudioContext = window.AudioContext||window.webkitAudioContext;
+			context = new AudioContext();
+		}
+		catch(e) {
+			alert('Web Audio API is not supported in this browser :-(');
+		}
+		gainNode = context.createGain();
+		gainNode.connect(context.destination);
+		gainNode.gain.value = .1;	//should be 1
+		filter = context.createBiquadFilter();
+		filter.connect(gainNode); // Connect sound to output
+		filter.type = 0;
+		filter.frequency.value = context.sampleRate / 2;
+	}
+
+	function makeKeyboard() {
+		initKeyMap();
+
+		var whiteKeyWidth = 20;
+		var whiteKeyHeight = 80;
+		var blackKeyWidth = 14;
+		var blackKeyHeight = 50;
+		var svg = document.getElementById('keyboard');
+
+		var keyId = 0;
+
+		for(var i=0; i < NUM_OCTAVES*7; i++) {
+			var key = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+			var mod = i%7;
+			// var octave = Math.floor(i/7);
+			var hasBlackKey = (mod == 1 || mod == 2 || mod == 4 || mod == 5 || mod == 6);
+			if(hasBlackKey) {
+				keyId += 1;
+			}
+
+			key.setAttribute('class', 'whitekey');
+			key.setAttribute('id', keyId);
+			key.setAttribute('x', i*whiteKeyWidth);
+			key.setAttribute('y', 0);
+			key.setAttribute('width', whiteKeyWidth);
+			key.setAttribute('height', whiteKeyHeight);
+			svg.appendChild(key);
+
+			if(hasBlackKey) {
+				keyId -= 1;
+				var key = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+				key.setAttribute('class', 'blackkey');
+				key.setAttribute('id', keyId);
+				key.setAttribute('x', i*whiteKeyWidth-blackKeyWidth/2);
+				key.setAttribute('y', 0);
+				key.setAttribute('width', blackKeyWidth);
+				key.setAttribute('height', blackKeyHeight);
+				svg.appendChild(key);
+				keyId += 1;
+			}
+			keyId += 1;
+		}
+		addKeyboardEventListeners();
+	}
+
+	function noteOn(note) {
+		if(!(note in notesPlaying)) {
+			document.getElementById(note).classList.add('pressed');
+			notesPlaying[note] = true;
+
+			oscillator = context.createOscillator(); // Create sound source
+			notesPlaying[note] = oscillator;
+			oscillator.frequency.value = NOTE_FREQ[note];
+			oscillator.connect(filter);
+			oscillator.type = oscType;
+			oscillator.start(0);
+		}
+		// $('#'+note+' rect').addClass("pressed");
+		// $('#'+note).attr('class',"pressed");
+	}
+	function noteOff(note) {
+		if(note in notesPlaying) {
+			notesPlaying[note].stop(0);
+			notesPlaying[note].disconnect();
+			notesPlaying[note] = false;
+			delete notesPlaying[note];
+			document.getElementById(note).classList.remove('pressed');
+		}
+		else {
+			throw "ERROR: Can't turn off a note that isn't playing";
+		}
+	}
+
+	/////////////////////////////////////////////
+	initWebAudio();
+	makeKeyboard();
+</script>
+</body>
+</html>

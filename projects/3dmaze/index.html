@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Greatest website ever">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>Title</title>
+</head>
+<body>
+  <script id="vertexShader" type="x-shader/x-vertex">
+      void main()
+      {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+      }
+    </script>
+    <script id="fragmentShader" type="x-shader/x-fragment">
+      // uniform float time;
+
+      uniform vec3 color;
+
+      void main()
+      {
+        gl_FragColor = vec4(color, 1.0);
+      }
+    </script>
+  <script src="dist/bundle.js"></script>
+</body>
+</html>

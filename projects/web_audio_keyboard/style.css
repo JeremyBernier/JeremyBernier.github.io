@@ -1,0 +1,49 @@
+html, body {
+	/*background-color:rgb(40,40,40);*/
+	background: url(d4.png);
+	/*background: url(blue.jpg);*/
+	color:#c2c8cd;
+	-webkit-font-smoothing: antialiased;
+	/*font: normal 14px/1.5em "Lucida Grande", "Lucida Sans Unicode", "Verdana", sans-serif;*/
+	text-shadow: rgba(0,0,0,.6) 0 1px 1px;
+
+	/*-webkit-box-shadow: rgba(0,0,0,.5) 0 0 15px inset;*/
+	-moz-box-shadow: rgba(0,0,0,.5) 0 0 15px inset;
+	margin:0;
+	padding:10px 0 0 0;
+}
+#keyboard {
+	margin:0 auto;
+	display:block;
+}
+.widget {
+	/*color: rgb(40,40,40);*/
+	/*background-color:rgb(100,100,100);*/
+	background: rgba(160,160,160,.2);
+	width:705px;
+	margin:0 auto;
+	padding: 14px;
+	border-radius: 3px;
+	border:1px solid rgba(0,0,0,.4);
+	-webkit-box-shadow: rgba(255,255,255,.2) 0 1px 0, rgba(255,255,255,.1) 0 0 5px, rgba(0,0,0,.1) 0 1px 3px inset;
+}
+.whitekey {
+	fill:white;
+	stroke:rgb(150,150,150);
+	stroke-width:1px;
+}
+.whitekey.pressed {
+	fill:rgb(220,220,250);
+}
+.blackkey.pressed {
+	fill:rgb(90,90,140);
+}
+.whitekey:hover {
+	fill:rgb(235,235,235);
+}
+.blackkey {
+	fill:rgb(60,60,60);
+}
+.blackkey:hover {
+	fill:rgb(0,0,0);
+}

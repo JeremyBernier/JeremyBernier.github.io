@@ -1,0 +1,158 @@
+html {
+  font-size: 16px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Myriad Pro', Helvetica, serif;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+-webkit-transition: 0.5s all;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  /*color: #9ad8ff;*/
+}
+
+/**************/
+
+body {
+  background-color: #F2F2F2;
+}
+
+.grid {
+  /*margin-top: 6px;*/
+  padding: 6px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid > li {
+  width: 33.333%;
+  padding: 8px;
+  box-sizing: border-box;
+ display: flex;
+}
+
+.grid > li > div {
+  background-color: white;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+  border-radius: 4px;
+  overflow: hidden;
+
+-webkit-transition: 0.5s all;
+  
+  border: 1px solid transparent;
+
+  padding: 10px;
+}
+
+.grid > li:hover > div {
+  border: 1px solid navy;
+}
+
+.grid > li:hover .product-name a {
+  color: navy;
+}
+
+.grid > li .product-name a {
+  color: rgb(30, 30, 30);
+}
+
+.grid > li .subtext {
+  color: rgb(140,140,140);
+}
+
+.grid > li > div img {
+ max-width: 80%;
+ height: 240px;
+ object-fit: contain;
+}
+
+.top-right-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #2fdab8;
+  padding: 6px;
+  color: white;
+  font-size: 1.4rem;
+}
+
+/* animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:.3s;
+  -moz-animation-duration:.3s;
+  animation-duration:.3s;
+}
+
+header {
+  text-align: center;
+  background-image: url("https://s3.amazonaws.com/GBrief/uploads/article/preview_image/499/Millennial_Explorers.jpg");
+  padding: .7rem 0 1rem;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-size: 6rem;
+  color: rgb(60, 60, 60);
+}
+
+h2 {
+  color: rgb(80, 80, 80);
+}
+
+@media (max-width: 1100px) {
+  .grid > li {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 4rem;
+  }
+  .grid > li {
+    width: 100%;
+  }
+}

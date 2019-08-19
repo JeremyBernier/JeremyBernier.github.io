@@ -217,7 +217,7 @@
 	  sprite.scale.set(25, 25, 1);
 	  orthoScene.add(sprite);
 
-	  texture = new THREE.ImageUtils.loadTexture('/img/handknife.png');
+	  texture = new THREE.ImageUtils.loadTexture('img/handknife.png');
 	  material = new THREE.SpriteMaterial({ map: texture,
 	    transparent: true
 	  });
@@ -257,7 +257,7 @@
 	  geometry = new THREE.PlaneBufferGeometry(500, 500);
 	  geometry.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
 	  // material = new THREE.MeshPhongMaterial({color: "rgb(0, 200, 240)"});
-	  texture = new THREE.ImageUtils.loadTexture('/img/textures/grasslight-big.jpg');
+	  texture = new THREE.ImageUtils.loadTexture('img/textures/grasslight-big.jpg');
 	  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	  texture.repeat.set(10, 10);
 	  material = new THREE.MeshPhongMaterial({
@@ -277,11 +277,11 @@
 	  // geometry = new THREE.BufferGeometry().fromGeometry(new THREE.BoxGeometry(70,30,80));
 	  geometry = new THREE.BoxGeometry(70, 30, 80);
 
-	  texture = new THREE.ImageUtils.loadTexture('/img/textures/wall.png');
+	  texture = new THREE.ImageUtils.loadTexture('img/textures/wall.png');
 	  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	  texture.repeat.set(10, 10);
 
-	  var floorTexture = new THREE.ImageUtils.loadTexture('/img/textures/floor.png');
+	  var floorTexture = new THREE.ImageUtils.loadTexture('img/textures/floor.png');
 	  floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
 	  floorTexture.repeat.set(10, 10);
 
@@ -424,7 +424,7 @@
 	    // extrudePath: c
 	  });
 
-	  texture = new THREE.ImageUtils.loadTexture('/img/textures/concrete.jpg');
+	  texture = new THREE.ImageUtils.loadTexture('img/textures/concrete.jpg');
 	  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	  texture.repeat.set(.1, .1);
 
@@ -541,7 +541,7 @@
 	  mesh.position.z = 53;
 	  scene.add(mesh);
 
-	  texture = new THREE.ImageUtils.loadTexture('/img/textures/graywood.jpg');
+	  texture = new THREE.ImageUtils.loadTexture('img/textures/graywood.jpg');
 	  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	  texture.repeat.set(4, 4);
 

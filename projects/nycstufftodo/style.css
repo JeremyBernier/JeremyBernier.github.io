@@ -1,0 +1,106 @@
+html, body {
+	margin:0;
+	padding:0;
+}
+body {
+	background:#fbfbfb;
+	color:rgb(50,50,50);
+}
+nav {
+	background-color: rgb(119, 142, 162);
+	/*rgb(125, 140, 153)*/
+	/*rgb(119, 142, 162)*/
+	/*rgb(94, 141, 180)*/
+	color:rgb(250, 250, 250);
+	text-align:center;
+	font-size:22px;
+	padding:0px 0 3px 0;
+	font-family:Tahoma, Verdana, Arial, sans-serif;
+}
+#content {
+	padding:10px 10px 20px;
+	margin-bottom:5%;
+	margin:0 auto;
+	max-width:1080px;
+}
+#rightLinks {
+	position:absolute;
+	right:10px;
+}
+.icon {
+	background: rgba(255,255,255,1);
+	border-radius: 50%;
+	width: 16px;
+}
+h1 {
+	margin:0;
+	font-size:18px;
+	font-weight:normal;
+	display:inline;
+	text-transform:uppercase;
+}
+h3 {
+	color:black;
+}
+table {
+	/*border:1px solid black;*/
+	border-collapse: collapse;
+	/*max-width:800px;*/
+	width:100%;
+	margin-bottom:40px;
+}
+thead {
+	border-bottom: 2px solid rgb(210, 210, 210);
+	background-color:rgb(208, 233, 255);
+}
+tbody {}
+tbody tr {
+	border-top: 1px solid rgb(226, 226, 226); /*210*/
+}
+td {
+	/*border:1px solid rgb(100, 100, 100);*/
+	padding:5px;
+}
+th {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	text-align:left;
+	text-transform:uppercase;
+}
+.heading {
+	font-weight:bold;
+	text-transform: uppercase;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size:16px;
+}
+.type {
+	color:white;
+	font-size:12px;
+	padding:2px 7px;
+	border-radius: .25em;
+	font-weight:bold;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background-color: rgb(190,190,190);
+}
+.type.Festival {
+	background-color:teal;
+}
+.type.Music {
+	background-color:purple;
+}
+.type.Yoga {
+	background-color:orange;
+}
+.type.Parade {
+	background-color:red;
+}
+.type.Film {
+	background-color:rgb(80,80,80);
+}
+.type.Dance {
+	background-color:rgb(70,70,255);
+}
+tr:nth-of-type(even) {
+	background-color:rgb(240,240,240);
+}

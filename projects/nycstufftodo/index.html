@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Free stuff to do in NYC. Never be out of the loop again.">
+	<title>NYC Stuff To Do</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.10/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-controller="controller" ng-cloak>
+
+<nav>
+	<h1>Free Stuff To Do in NYC</h1>
+	<span id="rightLinks">
+		<a href="http://www.twitter.com/NYCHacker" target="_blank"><img class="icon" src="twitter.png" /></a>
+	</span>
+</nav>
+<div id="content">
+	<table>
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Event</th>
+				<th>Location</th>
+				<th>Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="event in events">
+				<td>{{ event.date }}</td>
+				<td>{{ event.time }}</td>
+				<td><a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a></td>
+				<td><a ng-href="{{event.locationURL}}" target="_blank" rel="nofollow">{{ event.location }}</a></td>
+				<td><span class="type {{ event.type }}" ng-if="event.type">{{ event.type }}</span></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="heading">Recurring Events</div>
+	<ul>
+		<li><a href="http://www.cityparksfoundation.org/calendar/summerstage-central-park/" target="_blank">Summerstage - Central Park</a> - 6/27-8/23</li>
+		<li><a href="http://www.cityparksfoundation.org/calendar/summerstage-dance/" target="_blank">Summerstage - Dance</a> - 6/20-8/16</li>
+		<li><a href="https://gma.yahoo.com/good-morning-america-fun-in-the-sun-2014-summer-concert-series-195401898.html" target="_blank">GMA Concert Series</a> - 7-9am Fridays May-August - Central Park - Jennifer Lopez, Enrique Iglesias, Robin Thicke, Zedd, etc.</li>
+		<li><a href="http://publictheater.org/en/programs--events/shakespeare-in-the-park/?SiteTheme=Shakespeare" target="_blank">Shakespeare in the Park</a> - Central Park - <a href="http://publictheater.org/Tickets/?SiteTheme=Shakespeare" target="_blank">Schedule</a></li>
+		<li><a href="http://www.hudsonwarehouse.net/season.html" target="_blank">The Other Free Shakespeare in the Park</a> - Riverside Park</li>
+		<li><a href="http://www.downtownboathouse.org/calendar/" target="_blank">Free Kayaking</a> - May-October - Pier 26</li>
+		<li><a href="http://socratessculpturepark.org/program/halletscove/" target="_blank">Free Kayaking and Canoeing</a> - 5/18-9/13 (select Saturdays & Sundays) - Socrates Sculpture Park Beach</li>
+		<li><a href="http://bryantpark.org/plan-your-visit/fencing.html" target="_blank">Fencing</a> - Fridays 1-2pm 4/18-10/10 (not every week) - Bryant Park</li>
+		<li><a href="http://www.hudsonriverpark.org/events/sunset-salsa-with-talia-2014" target="_blank">Sunset Salsa with Talia</a> - Tuesdays 6/3-8/19 6:30pm - 14th St Park (Meatpacking District) (<a href="https://www.facebook.com/SunsetSalsaNYC" target="_blank">Facebook</a>)</li>
+		<li>Yoga - <a href="http://www.hudsonriverpark.org/events/yogamaya-2014" target="_blank">Yogama</a>, <a href="http://www.nycgovparks.org/events/2014/06/18/summer-on-the-hudson-salute-to-the-sun-yoga" target="_blank">Salute to the Sun Yoga</a></li>
+		<li><a href="http://washingtonsquareparkconservancy.org/events/2014-06-03-summer-health-fitness-events/" target="_blank">Yoga, Tai Chi, Dances</a> - Mornings - Washington Square Park</li>
+		<li><a href="http://www.othermusic.com/blogs/news/14231949-union-pool-other-music-present-summer-thunder-2014" target="_blank" rel="nofollow">Union Pool & Other Music Present: Summer Thunder 2014</a> - Every Saturday 2pm - Union Pool, Brooklyn</li>
+		<li>Intro to Improve - Magnet Theater</li>
+		<li>Boxing - Church Street Boxing Gym</li>
+	</ul>
+		<div class="heading">Film</div>
+		<ul>
+			<li><a href="http://www.nycgo.com/articles/free-summer-movies-2014" target="_blank">nycgo list</a></li>
+			<li><a href="http://www.nycgovparks.org/events/free_summer_movies" target="_blank">Summer Movies</a> (nycgovparks.org)</li>
+			<li><a href="http://rooftopfilms.com/" target="_blank">Rooftop Films</a></li>
+			<li><a href="http://www.intrepidmuseum.org/SummerMovieSeries2014.aspx" target="_blank">Intrepid Sea, Air, & Space Museum Movies</a> - Thursdays (not every single week)</li>
+			<li><a href="http://www.centralpark.com/guide/activities/central-park-film-festival.html" target="_blank">Central Park Film Festival</a> - 8/18-8/22 8pm (gates open at 6:30pm)</li>
+			<li><a href="http://socratessculpturepark.org/programs/films/">International Film Festival</a> - 7/2-8/20 (Wednesdays) - Pre-screening performances at 7pm, films begin at sundown</li>
+		</ul>
+		<div class="heading">Free Museums</div>
+		<ul>
+			<li>Metropolitan Museum of Art</li></li>
+			<li><a href="http://www.fitnyc.edu/334.asp" target="_blank">The Museum at FIT</a></li>
+			<li><a href="http://www.newyorkfed.org/aboutthefed/visiting.html" target="_blank">Federal Reserve Bank of New York</a> (Reservations Required)</li>
+			<li>New York Public Library</li>
+			<li>National Museum of the American Indian</li>
+			<li>New York Earth Room - SoHo - (a room filled with dirt)</li>
+			<li>Old Stone House - Brooklyn - ($3 <i>suggested</i> donation)</li>
+		</ul>
+		<div class="heading">Free Museums only at Specific Times</div>
+		<ul>
+			<li><a href="http://www.moma.org/visit/plan/index#hours" target="_blank">Museum of Modern Art</a> (Fri 4-8pm)
+			<li>Japan Society - Fri 6-9pm</li>
+			<li>Bronx Zoo - Wednesdays</li>
+			<li><a href="http://www.lonelyplanet.com/usa/travel-tips-and-articles/76493" target="_blank">LonelyPlanet's List</a>  (at the bottom)</li>
+		</ul>
+		<div class="heading">Other Free Stuff</div>
+		<ul>
+			<li>Governor's Island Ferry & Governor's Island open 7 days a week from 5/24 - 9/28 (<a href="http://govislandblog.com/schedule-of-events/" target="_blank">Events</a>)</li>
+			<li>Brooklyn Brewery Tours - Sat/Sun 1-5pm, every half-hour</li>
+		</ul>
+</div>
+
+<script>
+var app = angular.module('app', []);
+app.controller('controller', function($scope) {
+	$scope.events = [
+		{
+			name: 'Modern Dance',
+			date: '6/13 (Fri)',
+			time: '6-7:30pm',
+			location: 'Bryant Park',
+			type: 'Dance',
+			url: 'http://www.nycgovparks.org/events/2014/06/20/bryant-park-presents-modern-dance',
+			series: 'Bryant Park Presents Modern Dance'
+		},
+		{
+			name: 'Sri Jagannatha Ratha Yatra and Festival of India 2014',
+			date: '6/14 (Sat)',
+			time: '11am-7pm',
+			location: '45th St/5th Ave to Washington Square Park',
+			type: 'Festival',
+			url: 'http://www.radhagovindanyc.com/event/ratha-yatra-and-festival-of-india-2014/'
+		},
+		{
+			name: "Harmonica & Harp with Festival Orchestra",
+			date: '6/17 (Tue)',
+			time: '8-10pm',
+			location: 'Washington Square Park',
+			type: 'Music',
+			url: 'http://washingtonsquareparkconservancy.org/news/2014/05/21/program-announced-washington-square-music-festivals-56th-season/',
+			series: 'Washington Square Music Festival'
+		},
+		{
+			name: 'Word for Word: Jenny Mollen & Jason Biggs',
+			date: '6/18 (Wed)',
+			time: '12:30–1:45pm',
+			location: 'Bryant Park Reading Room',
+			type: '',
+			url: 'http://www.bryantpark.org/plan-your-visit/wordforword.html'
+		},
+		{
+			name: 'Jennifer Lopez',
+			date: '6/20 (Fri)',
+			time: '7-9am',
+			location: 'Central Park',
+			type: 'Music',
+			url: 'http://www.nycgovparks.org/events/2014/06/20/gma-summer-concert-jennifer-lopez',
+			series: 'GMA'
+		},
+		{
+			name: 'Modern Dance',
+			date: '6/20 (Fri)',
+			time: '6-7:30pm',
+			location: 'Bryant Park',
+			type: 'Dance',
+			url: 'http://www.nycgovparks.org/events/2014/06/20/bryant-park-presents-modern-dance',
+			series: 'Bryant Park Presents Modern Dance'
+		},
+		{
+			name: "Free Bike Helmet Fitting at Adventurers NYC",
+			date: '6/21 (Sat)',
+			time: '11am-3:30pm',
+			location: 'Adventurers NYC, Central Park',
+			url: "http://www.nyc.gov/portal/site/nycgov/index.jsp#selectedEvent",
+			series: 'Free Bike Helmet'
+		},
+		{
+			name: 'Solstice in Times Square: Athleta Mind Over Madness Yoga',
+			date: '6/21 (Sat)',
+			time: '11am-7pm',
+			location: 'Times Square',
+			type: 'Yoga',
+			url: 'http://www.timessquarenyc.org/events/solstice-in-times-square/index.aspx'
+		},
+		{
+			name: 'Bicycle Fetish Day',
+			date: '6/21 (Sat)',
+			time: '12-6pm',
+			location: 'The City Reliquary (Brooklyn)',
+			type: 'Festival',
+			url: 'https://www.facebook.com/events/225762440966471/'
+		},
+		{
+			name: 'Summer Solstice Celebration',
+			date: '6/21 (Sat)',
+			time: '5pm-Dusk',
+			location: 'Socrates Sculpture Park',
+			locationURL: 'http://socratessculpturepark.org/visit/directions-and-hours/',
+			// type: 'Festival, Art, Music',
+			type: 'Festival',
+			url: 'http://socratessculpturepark.org/program/solstice/'
+		},
+		{
+			name: "Make Music New York",
+			date: '6/21 (Sat)',
+			time: 'All Day',
+			location: 'all over the city',
+			locationURL: 'http://makemusicny.org/summer-schedule/2014/map',
+			url: "http://makemusicny.org/summer-schedule/",
+			type: 'Music'
+		},
+		{
+			name: "Mermaid Parade",
+			date: '6/21 (Sat)',
+			time: '1pm',
+			location: 'Coney Island',
+			url: "http://www.coneyisland.com/programs/mermaid-parade",
+			type: 'Parade'
+		},
+		{
+			name: "SummerStage: Fête de la Musique: -M- / Émilie Simon",
+			date: '6/21 (Sat)',
+			time: '7pm',
+			location: 'Central Park',
+			url: "http://summerstage.donyc.com/event/2014/06/21/fte-de-la-musique-m-emilie-simone",
+			type: 'Music',
+			series: 'SummerStage'
+		},
+		{
+			name: "Concert: Dum Dum Girls/Hospitality/TEEN",
+			date: '6/21 (Sat)',
+			time: '7pm',
+			location: 'Prospect Park',
+			url: "http://bricartsmedia.org/events/performing-arts/dum-dum-girls-hospitality-teen",
+			type: 'Music',
+			series: 'Celebrate Brooklyn'
+		},
+		{
+			name: "Free Bike Helmet Fitting at Northern Playground",
+			date: '6/22 (Sun)',
+			time: '11am-2:30pm',
+			location: 'Northern Playground, Queens',
+			url: "http://www.nyc.gov/portal/site/nycgov/index.jsp#selectedEvent",
+			series: 'Free Bike Helmet'
+		},
+		{
+			name: 'SFNYC Book Club - "Keepers" by Caroline Campion and Kathy Brennan',
+			date: '6/23 (Mon)',
+			time: '7-8:30pm',
+			url: 'http://www.slowfoodnyc.org/event/sfnyc_book_club_keepers_caroline_campion_and_kathy_brennan',
+			// type: 'Reading, Food',
+			type: 'Reading',
+			location: "Gotham West Market (Hell's Kitchen)"
+		},
+		{
+			name: "Vocal Music/Baroque to Modern with Festival Chamber Ensemble",
+			date: '6/24 (Tue)',
+			time: '8-10pm',
+			location: 'Washington Square Park',
+			type: 'Music',
+			url: 'http://washingtonsquareparkconservancy.org/news/2014/05/21/program-announced-washington-square-music-festivals-56th-season/',
+			series: 'Washington Square Music Festival'
+		},
+		{
+			name: 'SummerStage: Chuck Chillout, DJ Hollywood, Brucie B, and more',
+			date: '6/25 (Wed)',
+			time: '7-9pm',
+			location: 'Crotona Park (Bronx)',
+			locationURL: 'https://www.google.com/maps/preview?q=crotona+park&ie=UTF-8&ei=FUOaU_bbJtfLsQTp9YDAAQ&ved=0CAYQ_AUoAQ',
+			url: 'http://summerstage.donyc.com/event/2014/06/25/chuck-chillout-dj-hollywood-brucie-b-busy-bee-starski-la-love-and-forth-quarter-boys-hosted-by-mick-benzo-presented-in-a',
+			type: 'Music',
+			series: 'SummerStage'
+		},
+		{
+			name: 'NYC Pride Rally',
+			date: '6/27 (Fri)',
+			time: '6-9:30pm',
+			location: 'Pier 26',
+			locationURL: 'https://www.google.com/maps/place/Hudson+River+Park/@40.733076,-74.010872,17z/data=!3m1!4b1!4m2!3m1!1s0x89c259b9dd67cfd1:0xa8c5e779f5bd05db',
+			url: 'http://www.nycpride.org/',
+			type: 'Parade',
+		},
+		{
+			name: 'Modern Dance',
+			date: '6/27 (Fri)',
+			time: '6-7:30pm',
+			location: 'Bryant Park',
+			type: 'Dance',
+			url: 'http://www.nycgovparks.org/events/2014/06/20/bryant-park-presents-modern-dance',
+			series: 'Bryant Park Presents Modern Dance'
+		},
+		{
+			name: 'Rooftop Films: Five Star',
+			date: '6/27 (Fri)',
+			time: '8pm',
+			location: 'Metrotech Commons',
+			locationURL: 'http://rooftopfilms.com/2014/venues/metrotech-commons/',
+			url: 'http://rooftopfilms.com/2014/schedule/five-star/',
+			type: 'Film',
+			series: 'Rooftop Films'
+		},
+		{
+			name: 'The Great New York City Scavenger Hunt of 2014',
+			date: '6/28 (Sat)',
+			time: '5-10:30pm',
+			location: '25th Street between 3rd and Lex',
+			url: 'https://www.facebook.com/events/726441030712510',
+			type: 'Other',
+		},
+		{
+			name: 'Dyke March',
+			date: '6/28 (Sat)',
+			time: '5pm',
+			location: 'Bryant Park',
+			url: 'http://dykemarchnyc.org/',
+			type: 'Protest',
+		},
+		{
+			name: 'Big City Fishing',
+			url: 'http://www.hudsonriverpark.org/events/big-city-fishing-on-pier-84-2014',
+			date: '7/1-8/26 (Tuesdays)',
+			time: '1pm',
+			location: 'Pier 84',
+			locationURL: 'http://www.hudsonriverpark.org/explore-the-park/locations/pier-84',
+			type: 'Fishing',
+			series: 'Fishing'
+		},
+		{
+			name: 'SummerStage: Urban Bush Women, Laurie M., Taylor, Soul Movement',
+			url: 'http://summerstage.donyc.com/event/2014/07/02/dance-urban-bush-woman',
+			date: '7/2 (Wed)',
+			time: '8-10pm',
+			location: 'Central Park',
+			type: 'Music',
+			series: 'SummerStage'
+		},
+		{
+			name: 'Juilliard Concert I: New Music for Mixed Ensembles',
+			date: '7/6 (Sun)',
+			time: '8pm',
+			location: 'MoMa',
+			locationURL: '',
+			url: 'http://www.moma.org/visit/calendar/events/21222',
+			type: 'Music',
+			series: 'Summergarden: New Music for New York'
+		},
+		{
+			name: 'Concerts in the Parks: Prospect Park',
+			date: '7/9 (Wed)',
+			time: '8pm',
+			location: 'Prospect Park',
+			url: 'http://nyphil.org/ConcertsTickets/EventDetails?event={B75B2B42-E697-4895-8575-21B2E2A8BC9F}',
+			type: 'Music',
+			series: 'Concerts in the Parks'
+		},
+		{
+			name: 'Concert: Wild Beasts, Mutual Benefit, DJ Bill Pearis',
+			date: '7/10 (Thu)',
+			time: '6pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			url: 'http://www.hudsonriverpark.org/events/wild-beasts-with-mutual-benefit',
+			type: 'Music',
+			series: 'RiverRocks'
+		},
+		{
+			name: 'Concerts in the Parks: Central Park',
+			date: '7/11 (Fri)',
+			location: 'Central Park',
+			url: 'http://nyphil.org/ConcertsTickets/EventDetails?event={2139FD44-E071-44AD-9888-5E6B483BB109}',
+			type: 'Music',
+			series: 'Concerts in the Parks'
+		},
+		{
+			name: 'Rooftop Films: Broken Hearted: Twisted, Romantic, Short Films',
+			url: 'http://rooftopfilms.com/2014/schedule/broken-hearted-twisted-romantic-short-films/',
+			date: '7/11 (Fri)',
+			time: '8pm',
+			location: 'Metrotech Commons',
+			locationURL: 'http://rooftopfilms.com/2014/venues/metrotech-commons/',
+			type: 'Film',
+			series: 'Rooftop Films',
+		},
+		{
+			name: '4Knots Music Festival',
+			url: 'http://microapp.villagevoice.com/4knots/2014/',
+			date: '7/12 (Sat)',
+			time: '1-8pm',
+			location: 'South Street Seaport',
+			type: 'Music',
+		},
+		{
+			name: 'Swing with David Berger Jazz Orchestra (dance lessons at 6:30pm, live bands at 7pm)',
+			url: 'http://www.hudsonriverpark.org/events/swing-with-david-berger-2014',
+			date: '7/13 (Sun)',
+			time: '6:30pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Dance',
+		},
+		{
+			name: 'Jazz Concert I: Jonathan Ragonese Ensemble',
+			date: '7/13 (Sun)',
+			time: '8pm',
+			location: 'MoMa',
+			locationURL: '',
+			url: 'http://www.moma.org/visit/calendar/events/21223',
+			type: 'Music',
+			series: 'Summergarden: New Music for New York'
+		},
+		{
+			name: 'Concerts in the Parks: Central Park',
+			date: '7/14 (Mon)',
+			location: 'Central Park',
+			url: 'http://nyphil.org/ConcertsTickets/EventDetails?event={1DEB44B6-3F74-4641-B914-E3C40C5D6182}',
+			type: 'Music',
+			series: 'Concerts in the Parks'
+		},
+		{
+			name: 'Come Out & Play Field Day and Family Day',
+			url: 'http://govislandblog.com/schedule-of-events/',
+			date: '7/19 (Sat)',
+			time: '11am-5pm',
+			location: "Governor's Island",
+			type: 'Kids',
+			series: 'River To River Festival'
+		},
+		{
+			name: "Salsa with Los Hermanos Colon (dance lessons at 6:30pm, live bands at 7pm)",
+			url: 'http://www.hudsonriverpark.org/events/salsa-with-los-hermanos-colon-2014',
+			date: '7/20 (Sun)',
+			time: '6:30pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Dance',
+		},
+		{
+			name: 'Juilliard Concert II: New Music for String Quartet with Flute',
+			date: '7/20 (Sun)',
+			time: '8pm',
+			location: 'MoMa',
+			locationURL: '',
+			url: 'http://www.moma.org/visit/calendar/events/21224',
+			type: 'Music',
+			series: 'Summergarden: New Music for New York'
+		},
+		{
+			name: 'Concert: Teenage Fanclub with Honey Blood and Saint Rich',
+			url: 'http://www.hudsonriverpark.org/events/teenage-fanclub-with-honeyblood',
+			date: '7/24 (Thu)',
+			time: '6pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Music',
+			series: 'RiverRocks'
+		},
+		{
+			name: 'Rooftop Films: Animation Block Party (Short Films)',
+			url: 'http://rooftopfilms.com/2014/schedule/animation-block-party-short-films-1/',
+			date: '7/24 (Thu)',
+			time: '7:30pm',
+			location: 'Brookfield Place (Financial District)',
+			locationURL: 'http://rooftopfilms.com/2014/venues/brookfield-place-formerly-world-financial-center/',
+			type: 'Film',
+			series: 'Rooftop Films'
+		},
+		{
+			name: 'Rooftop Films: NY Shorts',
+			url: 'http://rooftopfilms.com/2014/schedule/animation-block-party-short-films-1/',
+			date: '7/25 (Fri)',
+			time: '7:30pm',
+			location: 'Brookfield Place (Financial District)',
+			locationURL: 'http://rooftopfilms.com/2014/venues/brookfield-place-formerly-world-financial-center/',
+			type: 'Film',
+			series: 'Rooftop Films'
+		},
+		{
+			name: "Swing with Vince Giordano & The Nighthawks (dance lessons at 6:30pm, live bands at 7pm)",
+			url: 'http://www.hudsonriverpark.org/events/swing-with-vince-giordano-the-nighthawks',
+			date: '7/27 (Sun)',
+			time: '6:30pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Dance',
+		},
+		{
+			name: 'Jazz Concert II: Helen Sung Quintet',
+			date: '7/27 (Sun)',
+			time: '8pm',
+			location: 'MoMa',
+			locationURL: '',
+			url: 'http://www.moma.org/visit/calendar/events/21225',
+			type: 'Music',
+			series: 'Summergarden: New Music for New York'
+		},
+		{
+			name: "Salsa with Nu D'Lux (dance lessons at 6:30pm, live bands at 7pm)",
+			url: 'http://www.hudsonriverpark.org/events/salsa-with-nu-dlux-2014',
+			date: '8/3 (Sun)',
+			time: '6:30pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Dance',
+		},
+		{
+			name: 'Tribute to Pete “El Conde” Rodriguez',
+			url: 'http://cccadi.org/04/august-3-2014-tribute-to-pete-el-conde-rodriguez-at-lincoln-center-out-of-doors/',
+			date: '8/3 (Sun)',
+			time: '7pm',
+			location: 'Lincoln Center (outside)',
+			locationURL: 'https://goo.gl/maps/Bz3Xp',
+			type: 'Music',
+		},
+		{
+			name: 'Concert: Temples, Here We Go Magic, Spires',
+			url: 'http://www.hudsonriverpark.org/events/temples-with-small-black',
+			date: '8/7 (Thu)',
+			time: '6pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Music',
+			series: 'RiverRocks'
+		},
+		{
+			name: "A Partnership Concert with the International Double Reed Society/NYU",
+			date: '8/8 (Tue)',
+			time: '8-10pm',
+			location: 'Washington Square Park',
+			type: 'Music',
+			url: 'http://washingtonsquareparkconservancy.org/events/2014-08-08-washington-square-music-festival-international-double-reed-society-nyu/',
+			series: 'Washington Square Music Festival'
+		},
+		{
+			name: 'Swing with George Gee Swing Orchestra (dance lessons at 6:30pm, live bands at 7pm)',
+			url: 'http://www.hudsonriverpark.org/events/swing-with-george-gee-swing-orchestra-2014',
+			date: '8/10 (Sun)',
+			time: '6:30pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Dance',
+		},
+		{
+			name: 'SummerStage: Blood Orange with Moses Sumney, Sean Nicholas Savage',
+			url: 'http://summerstage.donyc.com/event/2014/08/16/blood-orange',
+			date: '8/16 (Sat)',
+			time: '7-10pm',
+			location: 'Central Park',
+			type: 'Music',
+			series: 'SummerStage'
+		},
+		{
+			name: 'Blues BBQ',
+			url: 'http://www.hudsonriverpark.org/events/blues-bbq',
+			date: '8/23 (Sat)',
+			time: '2pm',
+			location: 'Pier 84',
+			locationURL: 'https://www.google.com/maps/preview?ie=UTF-8&fb=1&gl=us&q=hudson+river+park&cid=12161380879783757275&ei=kD-aU-rqDuzksAT94YCABA&ved=0CJ0BEPwSMAs',
+			type: 'Music',
+		},
+		/*
+		{
+			name: '',
+			url: '',
+			date: '',
+			time: '',
+			location: '',
+			locationURL: '',
+			type: '',
+		},
+		*/
+	];
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jeremy Bernier</title>
+    <meta charset='utf-8' / > <meta http-equiv='x-ua-compatible'
+    content='ie=edge' / > <meta name='viewport' content='width=device-width,
+    initial-scale=1, shrink-to-fit=no' / >
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-size: 2rem;
+
+        background-color: hsl(0, 0%, 15%);
+        color: white;
+        --code-color: hsl(0, 0%, 80%);
+        --subtitle-color: hsl(0, 0%, 80%);
+        --top-bar-color: hsl(235, 19%, 18%);
+        --top-bar-home-link-color: hsl(0, 0%, 70%);
+      }
+
+      body.theme-light {
+        background-color: white;
+        color: black;
+        --code-color: hsl(0, 0%, 40%);
+        --subtitle-color: hsl(0, 0%, 30%);
+        --top-bar-color: hsla(235, 19%, 18%, 0.78);
+        --top-bar-home-link-color: hsl(0, 0%, 90%);
+      }
+
+      hr {
+        border-color: hsl(0,0%,30%);
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      input,
+      button {
+        background-color: inherit;
+        color: inherit;
+        border-style: inherit;
+        border-color: inherit;
+        outline: none;
+      }
+
+      a {
+        color: hsl(215, 55%, 67%);
+        text-decoration: none;
+        transition: 0.5s color;
+      }
+
+      a:hover {
+        color: hsl(215, 55%, 80%);
+      }
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      .content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      p {
+        margin-bottom: 3.5rem;
+      }
+
+      code {
+        color: var(--code-color);
+      }
+
+      .post-top-section {
+        margin-bottom: 4rem;
+      }
+
+      .post-date {
+        font-style: italic;
+        font-size: 1.8rem;
+        color: var(--subtitle-color);
+      }
+
+      .post-content {
+        margin-bottom: 6rem;
+      }
+
+      a.top-home-link {
+        color: var(--top-bar-home-link-color);
+      }
+
+      a.top-home-link:hover {
+        color: white;
+      }
+
+      .top-bar {
+        margin-bottom: 0.5rem;
+        padding: 1rem 0 1.5rem;
+        background-color: var(--top-bar-color);
+        border-bottom: 1px solid hsl(0, 0%, 30%);
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .main-content {
+        margin-bottom: 10rem;
+      }
+
+      .big-arrow {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <header class="post-header content-wrapper">
+        <a class="top-home-link" href="/">🠐 Jeremy Bernier</a>
+        <button id="toggle-theme-btn">🌛</button>
+      </header>
+    </div>
+    <div class="content-wrapper">
+      <main class="main-content">
+        <article>
+          <header class="post-top-section">
+            <h1>Why I Don't Put My CSS inside the Dark Mode Media Query</h1>
+            <time class="post-date">October 9th, 2019</time>
+          </header>
+          <div class="post-content">
+            <p>
+              Today on the front page of Hacker News was a post titled
+              <a href="https://tombrow.com/dark-mode-website-css"
+                >"Dark mode in CSS with prefers-color-scheme"</a
+              >
+              where the author implements dark mode using the
+              <code>prefers-colors-scheme</code> media query which reads from
+              the user's operating system preferences.
+            </p>
+
+            <p>
+              I love dark mode, and love that there is finally a media query for
+              it (available since June).
+            </p>
+
+            <pre><code>@media (prefers-color-scheme: dark) {
+  // CSS goes here
+}
+</code></pre>
+
+            <p>
+              The problem is that
+              <strong
+                >putting your CSS inside the media query makes it difficult to
+                enable the user to toggle dark mode on/off.</strong
+              >
+            </p>
+            <p>
+              If a dark mode user decides they'd rather use your app in "light"
+              mode, then you now have the problem of having to override all of
+              the dark styles set inside the media query. Since media queries
+              have high priority in the pecking order of CSS hierarchy, this is
+              not actually simple, and ultimately requires duplicating your
+              light theme CSS into some CSS class (eg. `.theme-light`) that you
+              dynamically add to the body. Having your site's CSS written in two
+              places is of course a maintenance nightmare and very inefficient.
+            </p>
+            <p>
+              You have the same problem when a "light" mode user (by OS setting)
+              tries to switch to dark mode. They'll never be able to access that
+              media query without changing their OS setting, and so you'll have
+              to do the same thing in reverse - dynamically add a CSS class to
+              the body (eg. `.theme-dark`) and duplicate all of your dark theme
+              CSS that you wrote in your media query into this `.theme-dark`
+              class.
+            </p>
+            <p>
+              Obviously it 's a horrible idea to duplicate any code, let alone
+              duplicating twice.
+            </p>
+
+            <hr />
+
+            <p>
+              I opted out of using the media query and settled with simply
+              reading the media query tag with Javascript, then dynamically
+              adding a
+              <code>.theme-dark</code> class if
+              <code>prefers-color-scheme: dark</code>.
+            </p>
+
+            <pre><code>const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+if (isDarkMode) {
+  document.body.classList.add('theme-dark')
+}
+</code></pre>
+
+            <p>
+              Of course one would do well to extend this further and save/load
+              the user's dark mode preferences (eg. via
+              <code>localStorage</code>) .
+            </p>
+            <p>
+              I would've preferred the pure CSS solution of simply using the
+              media query, so it's a shame we have to rely on Javascript here,
+              but user experience and control should always be the #1 priority.
+            </p>
+            <p>
+              Note: You can toggle dark/mode on/off on this website via the
+              button on the top right of the page. I
+              implemented it the same way as described in this article, except I
+              default to dark mode :).
+            </p>
+          </div>
+        </article>
+        <a class="top-home-link" href="/"><span class="big-arrow">🠐</span></a>
+      </main>
+    </div>
+
+    <script>
+      let isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+      if (isLightMode) {
+        document.body.classList.add('theme-light')
+      }
+
+      const themeBtn = document.getElementById('toggle-theme-btn')
+      themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      themeBtn.addEventListener('click', function(event) {
+        isLightMode = !isLightMode
+        document.body.classList.toggle('theme-light')
+      })
+    </script>
+  </body>
+</html>
+;

@@ -244,8 +244,8 @@ if (isDarkMode) {
       themeBtn.addEventListener('click', function(event) {
         isLightMode = !isLightMode
         document.body.classList.toggle('theme-light')
+        themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
       })
     </script>
   </body>
 </html>
-;

@@ -16,7 +16,7 @@
           mobile-friendly, maintainable, and above all solve real human
           problems. (<a href="https://www.linkedin.com/jeremysbernier"
             >LinkedIn</a
-          >, <a href="/resume">Resume</a>)
+          >, <a href="/resume.pdf">Resume</a>)
         </p>
         <p>
           I spent the last year working remotely and contracting (while
@@ -35,8 +35,12 @@
         </p>
         <p>
           I'm currently working remotely. You can contact me
-          <a href="mailto:jeremy.s.bernier@gmail.com">here</a> regarding
-          contracting/freelancing inquiries (remote only).
+          <a
+            href="mailto:
+&#106;&#101;&#114;&#101;&#109;&#121;&#046;&#115;&#046;&#098;&#101;&#114;&#110;&#105;&#101;&#114;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;"
+            >here</a
+          >
+          regarding contracting/freelancing inquiries (remote only).
         </p>
       </article>
     `}}]}}),i.a);r.default=p}}]);

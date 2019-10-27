@@ -3,15 +3,17 @@
         :host {
         }
       `]}},{kind:"field",decorators:[Object(i.e)({type:Array})],key:"posts",value:()=>[]},{kind:"method",key:"render",value:function(){return i.d`
-      <p>
-        My new internet home is currently under construction (wasn't a fan of my
-        Gatsbyjs site's 2 minute build times).
-      </p>
-      <p>
-        In the meantime, I'm in the process of uploading all my tech writings
-        and resources on GitHub:
-        <a href="https://github.com/JeremyBernier/knowledge"
-          >https://github.com/JeremyBernier/knowledge</a
-        >
-      </p>
+      <main>
+        <p>
+          My new internet home is currently under construction (wasn't a fan of
+          my Gatsbyjs site's 2 minute build times).
+        </p>
+        <p>
+          In the meantime, I'm in the process of uploading all my tech writings
+          and resources on GitHub:
+          <a href="https://github.com/JeremyBernier/knowledge"
+            >https://github.com/JeremyBernier/knowledge</a
+          >
+        </p>
+      </main>
     `}}]}}),i.a);t.default=p}}]);

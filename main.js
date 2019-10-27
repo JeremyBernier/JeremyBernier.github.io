@@ -358,7 +358,8 @@ const ne=e=>t=>"function"==typeof t?((e,t)=>(window.customElements.define(e,t),t
         }
 
         img.portrait {
-          max-width: 200px;
+          width: 200px;
+          height: 200px;
           border-radius: 50%;
           margin-bottom: 1rem;
         }

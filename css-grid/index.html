@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS Grid | Jeremy Bernier</title>
+    <meta charset='utf-8' / > <meta http-equiv='x-ua-compatible'
+    content='ie=edge' / > <meta name='viewport' content='width=device-width,
+    initial-scale=1, shrink-to-fit=no' / >
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-size: 2rem;
+
+        background-color: hsl(0, 0%, 15%);
+        color: white;
+        --code-color: hsl(0, 0%, 80%);
+        --subtitle-color: hsl(0, 0%, 80%);
+        --top-bar-color: hsl(235, 19%, 18%);
+        --top-bar-home-link-color: hsl(0, 0%, 70%);
+      }
+
+      body.theme-light {
+        background-color: white;
+        color: black;
+        --code-color: hsl(0, 0%, 40%);
+        --subtitle-color: hsl(0, 0%, 30%);
+        --top-bar-color: hsla(235, 19%, 18%, 0.78);
+        --top-bar-home-link-color: hsl(0, 0%, 90%);
+      }
+
+      hr {
+        border-color: hsl(0,0%,30%);
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      input,
+      button {
+        background-color: inherit;
+        color: inherit;
+        border-style: inherit;
+        border-color: inherit;
+        outline: none;
+      }
+
+      a {
+        color: hsl(215, 55%, 67%);
+        text-decoration: none;
+        transition: 0.5s color;
+      }
+
+      a:hover {
+        color: hsl(215, 55%, 80%);
+      }
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      .content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+      p {
+        margin-bottom: 3rem;
+      }
+
+      code {
+        color: var(--code-color);
+      }
+
+      .post-top-section {
+        margin-bottom: 4rem;
+      }
+
+      .post-date {
+        font-style: italic;
+        font-size: 1.8rem;
+        color: var(--subtitle-color);
+      }
+
+      .post-content {
+        margin-bottom: 6rem;
+      }
+
+      a.top-home-link {
+        color: var(--top-bar-home-link-color);
+      }
+
+      a.top-home-link:hover {
+        color: white;
+      }
+
+      .top-bar {
+        margin-bottom: 0.5rem;
+        padding: 1rem 0 1.5rem;
+        background-color: var(--top-bar-color);
+        border-bottom: 1px solid hsl(0, 0%, 30%);
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .main-content {
+        margin-bottom: 10rem;
+      }
+
+      .big-arrow {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <header class="post-header content-wrapper">
+        <a class="top-home-link" href="/">🠐 Jeremy Bernier</a>
+        <button id="toggle-theme-btn">🌛</button>
+      </header>
+    </div>
+    <div class="content-wrapper">
+      <main class="main-content">
+        <article>
+
+          <header class="post-top-section">
+            <h1>CSS Grid</h1>
+            <time class="post-date">2019-10-20T12:46:37.121Z</time>
+          </header>
+          <div class="post-content">
+            <p>CSS Grid is a gamechanger. It's about damn time there's a simple way to create grids without requiring ugly hacks.</p>
+<p>I'm not a fan of long tutorials that waste your time, so let's get to the point.</p>
+<p>This is a grid with 3 columns:</p>
+<h4 id="html">HTML</h4>
+<pre><code>&lt;div class="grid-container"&gt;
+  &lt;div&gt;Thing 1&lt;/div&gt;
+  &lt;div&gt;Thing 2&lt;/div&gt;
+  &lt;div&gt;Thing 3&lt;/div&gt;
+  &lt;div&gt;Thing 4&lt;/div&gt;
+  &lt;div&gt;Thing 5&lt;/div&gt;
+  &lt;div&gt;Thing 6&lt;/div&gt;
+  &lt;div&gt;Thing 7&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="css">CSS</h3>
+<pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: repeat(3, 1fr); Does same as above */
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+#container &gt; div {
+  background-color: hsl(0,0%,10%);
+}
+</code></pre>
+<p>That's it! End of tutorial.</p>
+<p>More resources:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS<em>Grid</em>Layout</a></li>
+</ul>
+          </div>
+        </article>
+        <a class="top-home-link" href="/"><span class="big-arrow">🠐</span></a>
+      </main>
+    </div>
+
+    <script>
+      let isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+      if (isLightMode) {
+        document.body.classList.add('theme-light')
+      }
+
+      const themeBtn = document.getElementById('toggle-theme-btn')
+      themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      themeBtn.addEventListener('click', function(event) {
+        isLightMode = !isLightMode
+        document.body.classList.toggle('theme-light')
+        themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      })
+    </script>
+  </body>
+</html>

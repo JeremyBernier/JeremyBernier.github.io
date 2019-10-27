@@ -1,36 +1,55 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
+importScripts("precache-manifest.99f9d217e6df0706b81f7fefcfcacd9b.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
-importScripts(
-  "precache-manifest.8020a84515a31a0854f70973616a9245.js"
-);
+workbox.routing.registerNavigationRoute(
+  // Assuming '/single-page-app.html' has been precached,
+  // look up its corresponding cache key.
+  workbox.precaching.getCacheKeyForURL('/index.html'),
+  {
+    whitelist: [/^\/consulting\/?$/],
+    blacklist: [
+      // new RegExp('/blog/restricted/'),
+    ]
+  }
+)
 
-workbox.core.skipWaiting();
+// workbox.routing.registerRoute(
+//   /^\/consulting\/?$/,
+//   // Use cache but update in the background.
+//   new workbox.strategies.StaleWhileRevalidate({
+//     // Use a custom cache name.
+//     cacheName: 'consulting-cache'
+//   })
+// )
 
-workbox.core.clientsClaim();
+workbox.routing.registerRoute(
+  // Cache CSS files.
+  /\.css$/,
+  // Use cache but update in the background.
+  new workbox.strategies.StaleWhileRevalidate({
+    // Use a custom cache name.
+    cacheName: 'css-cache'
+  })
+)
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+workbox.routing.registerRoute(/\.js$/, new workbox.strategies.NetworkFirst())
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("index.html"));
+workbox.routing.registerRoute(
+  // Cache image files.
+  /\.(?:png|jpg|jpeg|svg|gif)$/,
+  // Use the cache if it's available.
+  new workbox.strategies.CacheFirst({
+    // Use a custom cache name.
+    cacheName: 'image-cache',
+    plugins: [
+      new workbox.expiration.Plugin({
+        // Cache only 20 images.
+        maxEntries: 20,
+        // Cache for a maximum of a week.
+        maxAgeSeconds: 7 * 24 * 60 * 60
+      })
+    ]
+  })
+)
 
-workbox.routing.registerRoute(/\/@webcomponents\/webcomponentsjs\//, new workbox.strategies.StaleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/^https:\/\/fonts.gstatic.com\//, new workbox.strategies.StaleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/\/img\//, new workbox.strategies.StaleWhileRevalidate(), 'GET');

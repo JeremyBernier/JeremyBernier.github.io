@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tmux | Jeremy Bernier</title>
+    <meta charset='utf-8' / > <meta http-equiv='x-ua-compatible'
+    content='ie=edge' / > <meta name='viewport' content='width=device-width,
+    initial-scale=1, shrink-to-fit=no' / >
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-size: 2rem;
+
+        background-color: hsl(0, 0%, 15%);
+        color: white;
+        --code-color: hsl(0, 0%, 80%);
+        --subtitle-color: hsl(0, 0%, 80%);
+        --top-bar-color: hsl(235, 19%, 18%);
+        --top-bar-home-link-color: hsl(0, 0%, 70%);
+      }
+
+      body.theme-light {
+        background-color: white;
+        color: black;
+        --code-color: hsl(0, 0%, 40%);
+        --subtitle-color: hsl(0, 0%, 30%);
+        --top-bar-color: hsla(235, 19%, 18%, 0.78);
+        --top-bar-home-link-color: hsl(0, 0%, 90%);
+      }
+
+      hr {
+        border-color: hsl(0,0%,30%);
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      input,
+      button {
+        background-color: inherit;
+        color: inherit;
+        border-style: inherit;
+        border-color: inherit;
+        outline: none;
+      }
+
+      a {
+        color: hsl(215, 55%, 67%);
+        text-decoration: none;
+        transition: 0.5s color;
+      }
+
+      a:hover {
+        color: hsl(215, 55%, 80%);
+      }
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      .content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+      p {
+        margin-bottom: 3rem;
+      }
+
+      code {
+        color: var(--code-color);
+      }
+
+      .post-top-section {
+        margin-bottom: 4rem;
+      }
+
+      .post-date {
+        font-style: italic;
+        font-size: 1.8rem;
+        color: var(--subtitle-color);
+      }
+
+      .post-content {
+        margin-bottom: 6rem;
+      }
+
+      a.top-home-link {
+        color: var(--top-bar-home-link-color);
+      }
+
+      a.top-home-link:hover {
+        color: white;
+      }
+
+      .top-bar {
+        margin-bottom: 0.5rem;
+        padding: 1rem 0 1.5rem;
+        background-color: var(--top-bar-color);
+        border-bottom: 1px solid hsl(0, 0%, 30%);
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .main-content {
+        margin-bottom: 10rem;
+      }
+
+      .big-arrow {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <header class="post-header content-wrapper">
+        <a class="top-home-link" href="/">🠐 Jeremy Bernier</a>
+        <button id="toggle-theme-btn">🌛</button>
+      </header>
+    </div>
+    <div class="content-wrapper">
+      <main class="main-content">
+        <article>
+
+          <header class="post-top-section">
+            <h1>tmux</h1>
+            <time class="post-date">2019-10-09T12:46:37.121Z</time>
+          </header>
+          <div class="post-content">
+            <p>Tmux is a terminal program for Unix-like operating systems that lets you have tabs and split planes in any terminal window.</p>
+<p>There's definitely a learning curve as it takes time to get used to the keyboard shortcuts, but once you get used to them, they become like muscle memory.</p>
+<p>That being said, I highly recommend changing the hotkeys to your liking.</p>
+<p>For me personally, I made the following changes:</p>
+<ul>
+<li>Changed Ctrl-B prefix command to Ctrl-Space. I don't like Ctrl-B as a prefix because it interferes with the Ctrl-B scroll command in Vim.</li>
+<li>Changed horizontal/vertical split pane shorcuts to "-" and "|" to make them easier to remember</li>
+<li>Enable Alt-arrow to switch panes without prefix</li>
+<li>Changing the design</li>
+</ul>
+<p>You can edit your tmux config file which is located at <code>~/.tmux.conf</code>.</p>
+<p>Here's my tmux config file (mostly inspired by <a href="https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/">this blog post</a>):</p>
+<pre><code># remap prefix from 'C-b' to 'C-Space'
+unbind C-b
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
+
+# split panes using | and -
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
+# switch panes using Alt-arrow without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Enable mouse mode (tmux 2.1 and above)
+# set -g mouse on
+
+######################
+### DESIGN CHANGES ###
+######################
+
+# loud or quiet?
+set -g visual-activity off
+set -g visual-bell off
+set -g visual-silence off
+setw -g monitor-activity off
+set -g bell-action none
+
+#  modes
+setw -g clock-mode-colour colour5
+setw -g mode-style 'fg=colour1 bg=colour18 bold'
+
+# panes
+set -g pane-border-style 'fg=colour19 bg=colour0'
+set -g pane-active-border-style 'bg=colour0 fg=colour9'
+
+# statusbar
+set -g status-position bottom
+set -g status-justify left
+set -g status-style 'bg=colour18 fg=colour137 dim'
+set -g status-left ''
+set -g status-right '#[fg=colour233,bg=colour19] %d/%m #[fg=colour233,bg=colour8] %H:%M:%S '
+set -g status-right-length 50
+set -g status-left-length 20
+
+setw -g window-status-current-style 'fg=colour1 bg=colour19 bold'
+setw -g window-status-current-format ' #I#[fg=colour249]:#[fg=colour255]#W#[fg=colour249]#F '
+
+setw -g window-status-style 'fg=colour9 bg=colour18'
+setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
+
+setw -g window-status-bell-style 'fg=colour255 bg=colour1 bold'
+
+# messages
+set -g message-style 'fg=colour232 bg=colour16 bold'
+</code></pre>
+          </div>
+        </article>
+        <a class="top-home-link" href="/"><span class="big-arrow">🠐</span></a>
+      </main>
+    </div>
+
+    <script>
+      let isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+      if (isLightMode) {
+        document.body.classList.add('theme-light')
+      }
+
+      const themeBtn = document.getElementById('toggle-theme-btn')
+      themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      themeBtn.addEventListener('click', function(event) {
+        isLightMode = !isLightMode
+        document.body.classList.toggle('theme-light')
+        themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      })
+    </script>
+  </body>
+</html>

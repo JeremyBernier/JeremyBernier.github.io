@@ -17,7 +17,7 @@
         </p>
         <p>
           View my old projects page
-          <a href="https://www.jbernier.com/projects">here</a>.
+          <a href="/projects">here</a>.
         </p>
         <p>
           Enjoy this small preview of my new site (fun fact: it works

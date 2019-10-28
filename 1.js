@@ -3,11 +3,13 @@
         :host {
         }
         article {
-          -webkit-animation: fadein 0.4s; /* Safari, Chrome and Opera > 12.1 */
-          -moz-animation: fadein 0.4s; /* Firefox < 16 */
-          -ms-animation: fadein 0.4s; /* Internet Explorer */
-          -o-animation: fadein 0.4s; /* Opera < 12.1 */
-          animation: fadein 0.4s;
+          -webkit-animation: fadein 0.35s; /* Safari, Chrome and Opera > 12.1 */
+          -moz-animation: fadein 0.35s; /* Firefox < 16 */
+          -ms-animation: fadein 0.35s; /* Internet Explorer */
+          -o-animation: fadein 0.35s; /* Opera < 12.1 */
+          animation: fadein 0.35s;
+
+          padding: 0 1.5rem;
         }
       `]}},{kind:"method",key:"connectedCallback",value:function(){p(f(r.prototype),"connectedCallback",this).call(this),document.body.classList.toggle("page-consulting")}},{kind:"method",key:"disconnectedCallback",value:function(){document.body.classList.toggle("page-consulting"),p(f(r.prototype),"disconnectedCallback",this).call(this)}},{kind:"method",key:"render",value:function(){return i.d`
       <article>

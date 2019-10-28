@@ -2,18 +2,24 @@
         ${n.a}
         :host {
         }
+        main {
+          padding: 0 1.5rem;
+        }
       `]}},{kind:"field",decorators:[Object(i.e)({type:Array})],key:"posts",value:()=>[]},{kind:"method",key:"render",value:function(){return i.d`
       <main>
         <p>
           My new internet home is currently under construction (wasn't a fan of
-          my Gatsbyjs site's 2 minute build times).
+          my Gatsbyjs site's 2 minute build times + slow performance).
         </p>
         <p>
           In the meantime, I'm in the process of uploading all my tech writings
-          and resources on GitHub:
+          and resources to GitHub:
           <a href="https://github.com/JeremyBernier/knowledge"
             >https://github.com/JeremyBernier/knowledge</a
           >
+        </p>
+        <p>
+          Enjoy this small preview of my new site (fun fact: it works offline)
         </p>
       </main>
     `}}]}}),i.a);t.default=p}}]);

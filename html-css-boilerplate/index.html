@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML / CSS Boilerplate | Jeremy Bernier</title>
+    <meta charset='utf-8' / > <meta http-equiv='x-ua-compatible'
+    content='ie=edge' / > <meta name='viewport' content='width=device-width,
+    initial-scale=1, shrink-to-fit=no' / >
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-size: 2rem;
+
+        background-color: hsl(0, 0%, 15%);
+        color: white;
+        --code-color: hsl(0, 0%, 80%);
+        --subtitle-color: hsl(0, 0%, 80%);
+        --top-bar-color: hsl(235, 19%, 18%);
+        --top-bar-home-link-color: hsl(0, 0%, 70%);
+      }
+
+      body.theme-light {
+        background-color: white;
+        color: black;
+        --code-color: hsl(0, 0%, 40%);
+        --subtitle-color: hsl(0, 0%, 30%);
+        --top-bar-color: hsla(235, 19%, 18%, 0.78);
+        --top-bar-home-link-color: hsl(0, 0%, 90%);
+      }
+
+      hr {
+        border-color: hsl(0,0%,30%);
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      input,
+      button {
+        background-color: inherit;
+        color: inherit;
+        border-style: inherit;
+        border-color: inherit;
+        outline: none;
+      }
+
+      a {
+        color: hsl(215, 55%, 67%);
+        text-decoration: none;
+        transition: 0.5s color;
+      }
+
+      a:hover {
+        color: hsl(215, 55%, 80%);
+      }
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      .content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+      p {
+        margin-bottom: 3rem;
+      }
+
+      code {
+        color: var(--code-color);
+      }
+
+      .post-top-section {
+        margin-bottom: 4rem;
+      }
+
+      .post-date {
+        font-style: italic;
+        font-size: 1.8rem;
+        color: var(--subtitle-color);
+      }
+
+      .post-content {
+        margin-bottom: 6rem;
+      }
+
+      a.top-home-link {
+        color: var(--top-bar-home-link-color);
+      }
+
+      a.top-home-link:hover {
+        color: white;
+      }
+
+      .top-bar {
+        margin-bottom: 0.5rem;
+        padding: 1rem 0 1.5rem;
+        background-color: var(--top-bar-color);
+        border-bottom: 1px solid hsl(0, 0%, 30%);
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .main-content {
+        margin-bottom: 10rem;
+      }
+
+      .big-arrow {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <header class="post-header content-wrapper">
+        <a class="top-home-link" href="/">🠐 Jeremy Bernier</a>
+        <button id="toggle-theme-btn">🌛</button>
+      </header>
+    </div>
+    <div class="content-wrapper">
+      <main class="main-content">
+        <article>
+
+          <header class="post-top-section">
+            <h1>HTML / CSS Boilerplate</h1>
+            <time class="post-date">2019-10-09T12:46:37.121Z</time>
+          </header>
+          <div class="post-content">
+            <p>Here's some of the HTML/CSS code I include in every project.</p>
+<h3 id="html">HTML</h3>
+<pre><code>&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset='utf-8' /&gt;
+    &lt;meta http-equiv='x-ua-compatible' content='ie=edge' /&gt;
+    &lt;meta name='viewport' content='width=device-width,initial-scale=1,shrink-to-fit=no' /&gt;
+</code></pre>
+<p>These meta tags will make your site look normal on mobile, specifically the last line.</p>
+<pre><code>&lt;meta name="description" content="Your page description"&gt;
+&lt;title&gt;Page Title&lt;/title&gt;
+</code></pre>
+<p>At a minimum, you should have these tags for usability/SEO purposes.</p>
+<h3 id="css">CSS</h3>
+<pre><code>*, ::after, ::before {
+  box-sizing: border-box;
+}
+</code></pre>
+<p>Without this, <code>width</code> and <code>height</code> don't include padding and border width. So if you were to set width = 100px without this setting, then your width would actually be 100px + padding + border. When most people set width = 100px, they want width = 100px. Why it doesn't default to this setting I have no idea.</p>
+<pre><code>html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+</code></pre>
+<p><code>rem</code> units enable one to size things relative to the <code>font-size</code> of <code>html</code>. <code>rem</code> units are generally preferrable to <code>px</code> or <code>em</code> because they scale relative to the global font-size (without the confusion of <code>em</code> depending on its parent).</p>
+<p><code>1 rem = 10 * font-size of html</code></p>
+<p>Making the html <code>font-size</code> 10px means that <code>1rem = 10px</code>, making calculations easier. But it's not good practice to directly set the html font-size because that overrides the user's default browser font-size settings, so we set the font-size to a percentage. The default font-size is generally 16px, and 62.5% of 16px = 10px.</p>
+<p>A font-size of 1.6rem sets the body font-size back to 100%, or 16px on most browsers (16px _ 62.5% _ 1.6 = 16px)</p>
+<pre><code>body {
+  margin: 0;
+  padding: 0;
+}
+</code></pre>
+<p>Remove any default margin and padding in the body.</p>
+<pre><code>h1,h2,h3,h4,h5,h6 {
+  margin-top: 0;
+}
+</code></pre>
+<p>To be honest you should probably get rid of all the margins, but at the very least you should remove the top margin because it's totally unnecessary.</p>
+<pre><code>a {
+  color: &lt;anything else&gt;
+  text-decoration: none;
+}
+</code></pre>
+<p>The default link color is atrocious. Remove the underline, and change the color to anything else.</p>
+<pre><code>@media (prefers-color-scheme: dark) {
+  body {
+    background-color: hsl(0, 0%, 15%);
+    color: white;
+  }
+}
+</code></pre>
+<p>Actually <a href="/dark-mode">I prefer to put dark mode in classes (and CSS variables) in order to allow the user to toggle between dark/light mode</a>, but if you're just spinning something up quickly then this is the least you can do. And either way you should be reading the media query, even if via Javascript (see <a href="/dark-mode">article</a> for more).</p>
+<p>There's a lot more CSS I include, this is just a barebones starting point.</p>
+          </div>
+        </article>
+        <a class="top-home-link" href="/"><span class="big-arrow">🠐</span></a>
+      </main>
+    </div>
+
+    <script>
+      let isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+      if (isLightMode) {
+        document.body.classList.add('theme-light')
+      }
+
+      const themeBtn = document.getElementById('toggle-theme-btn')
+      themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      themeBtn.addEventListener('click', function(event) {
+        isLightMode = !isLightMode
+        document.body.classList.toggle('theme-light')
+        themeBtn.innerHTML = !isLightMode ? '🌛' : '🌞'
+      })
+    </script>
+  </body>
+</html>

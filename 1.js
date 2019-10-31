@@ -31,8 +31,8 @@
         </p>
         <p>
           Prior to that I was a full stack engineer at iHeartRadio working on
-          their flagship web application, iheart.com (200M visits/month), a
-          music player for live radio, custom stations, and podcasts (universal
+          their flagship web application, iheart.com (20M visits/month), a music
+          player for live radio, custom stations, and podcasts (universal
           Javascript, React, Node.js)
         </p>
         <p>

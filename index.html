@@ -35,7 +35,7 @@ html, body
       body {
         margin: 0;
         padding: 0;
-        background-color: hsl(0, 0%, 15%);
+        background-color: black;
         color: white;
         font-size: 2rem;
         font-family: 'Roboto Mono', monospace;
@@ -43,7 +43,9 @@ html, body
       }
 
       body.page-consulting {
-        background-color: hsl(244, 13%, 19%);
+        background-color: #00213e;
+        /*background-color: hsl(244, 13%, 19%);*/
+        /*background-color: hsl(0, 0%, 15%);*/
       }
 
       a {
@@ -90,6 +92,16 @@ html, body
         margin-bottom: 1rem;
         list-style-type: none;
       }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        z-index: -1;
+      }
     </style>
     <script>
       // Load and register pre-caching Service Worker
@@ -106,6 +118,7 @@ html, body
   <body>
     <div class="main-wrapper">
       <main-app></main-app>
+      <canvas id="canvas"></canvas>
     </div>
 
     <noscript>

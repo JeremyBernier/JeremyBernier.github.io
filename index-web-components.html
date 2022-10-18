@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charSet="utf-8" />
+    <meta name="description" content="Jeremy Bernier - Software Engineer, Thinker, World Traveler"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Jeremy Bernier | Home</title>
+    <meta name="theme-color" content="#252737">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="shortcut icon" href="icons/icon-48x48.png"/>
+    <link rel="apple-touch-icon" sizes="48x48" href="icons/icon-48x48.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/icon-96x96.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png"/>
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/icon-256x256.png"/>
+    <link rel="apple-touch-icon" sizes="384x384" href="icons/icon-384x384.png"/>
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512x512.png"/>
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      /*      @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100'
+html, body
+  font-family 'Roboto Mono', monospace*/
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+        font-size: 2rem;
+        font-family: 'Roboto Mono', monospace;
+        transition: 1s background-color;
+      }
+
+      body.page-consulting {
+        background-color: #00213e;
+        /*background-color: hsl(244, 13%, 19%);*/
+        /*background-color: hsl(0, 0%, 15%);*/
+      }
+
+      a {
+        color: hsl(215, 55%, 67%);
+        text-decoration: none;
+        transition: 0.3s color;
+      }
+
+      a:hover {
+        color: hsl(215, 55%, 80%);
+      }
+
+      .post-list a {
+        transition: 1s margin;
+      }
+
+      .post-list a:hover {
+        margin-left: 0.5rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 0;
+      }
+
+      .main-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 2rem;
+        margin-bottom: 10rem;
+        overflow-x: hidden;
+      }
+
+      .subtext {
+        color: hsl(0, 0%, 80%);
+      }
+
+      ul.post-list > li {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        list-style-type: none;
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        z-index: -1;
+      }
+    </style>
+    <script>
+      // Load and register pre-caching Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js', {
+            scope: '/',
+          });
+        });
+      }
+    </script>
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <main-app></main-app>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <noscript>
+      Please enable JavaScript to view this website.
+    </noscript>
+  <script type="text/javascript" src="main.js"></script></body>
+</html>
